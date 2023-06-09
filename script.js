@@ -22,7 +22,10 @@ generateBtn.addEventListener("click", writePassword);
 // WHEN prompted for password criteria
 // THEN I select which criteria to include in the password
 
-
+let useLowercase = "";
+let useUppercase = "";
+let useNumbers = "";
+let useSpecial = "";
 
 // WHEN prompted for the length of the password
 // THEN I choose a length of at least 8 characters and no more than 128 characters
@@ -36,22 +39,6 @@ const passwordLength = window.prompt("How long would you like you password? Choo
 // console.log(randomNumber);
 
 
-
-function genRandonString(length) {
-  var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-  var charLength = chars.length;
-  var result = '';
-  for (var i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * charLength));
-  }
-  return result;
-}
-
-var randomString = genRandonString(passwordLength);
-console.log(randomString)
-
-
-
 // WHEN asked for character types to include in the password
 // THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
 
@@ -61,7 +48,7 @@ console.log(randomString)
 const lowercase = window.confirm("Would you like your password to contain Lowercase Letters?");
 if (lowercase) {
   window.alert("Lowercase Letters will be used :)");
-  const useLowercase = "abcdefghijklmnopqrstuvwxyz";
+  useLowercase = "abcdefghijklmnopqrstuvwxyz";
 } else {
   window.alert("Lowercase Letters will NOT be used :(")
 }
@@ -69,7 +56,7 @@ if (lowercase) {
 const uppercase = window.confirm("Would you like your password to contain Uppercase Letters?");
 if (uppercase) {
   window.alert("Uppercase Letters will be used :)");
-  const useUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  useUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 } else {
   window.alert("Uppercase Letters will NOT be used :(")
 }
@@ -77,7 +64,7 @@ if (uppercase) {
 const numbers = window.confirm("Would you like your password to contain Numbers?");
 if (numbers) {
   window.alert("Numbers will be used :)");
-  const useNumbers = "0123456789";
+  useNumbers = "0123456789";
 } else {
   window.alert("Numbers will NOT be used :(")
 }
@@ -85,7 +72,7 @@ if (numbers) {
 const special = window.confirm("Would you like your password to contain Special Characters?");
 if (special) {
   window.alert("Special Characters will be used :)");
-  const useSpecial = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+  useSpecial = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 } else {
   window.alert("Special Characters will NOT be used :(")
 }
@@ -97,7 +84,18 @@ if (special) {
 // WHEN all prompts are answered
 // THEN a password is generated that matches the selected criteria
 
-
+function generatePassword(length) {
+  var chars = useLowercase + useUppercase + useNumbers + useSpecial;
+  var charLength = chars.length;
+  var result = '';
+  for (var i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * charLength));
+  }
+  return result;
+}
 
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
+
+let password = generatePassword(passwordLength);
+window.alert("Your secure password is " + password)
