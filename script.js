@@ -1,3 +1,7 @@
+// GIVEN I need a new, secure password
+// WHEN I click the button to generate a password
+// THEN I am presented with a series of prompts for password criteria
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
@@ -7,26 +11,15 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
-// GIVEN I need a new, secure password
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-
-
-
+// declare function
 function generatePassword() {
 
-
-  // WHEN prompted for password criteria
-  // THEN I select which criteria to include in the password
-
+  // declare variables
   let useLowercase = "";
   let useUppercase = "";
   let useNumbers = "";
@@ -37,47 +30,28 @@ function generatePassword() {
 
   const passwordLength = window.prompt("How long would you like you password to be? Choose between 8 and 128 Characters");
 
-  //generate random number of desired length -- You are running into Number.MAX_SAFE_INTEGER. The largest exact integral value is 2^53-1, or 9007199254740991.
-  // const randomNumber = Math.random().toString().slice(2, passwordLength);
-  // console.log(randomNumber);
-
-
   // WHEN asked for character types to include in the password
   // THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-
   // WHEN I answer each prompt
   // THEN my input should be validated and at least one character type should be selected
-
   const lowercase = window.confirm("Would you like your password to contain Lowercase Letters?");
   if (lowercase) {
-    //window.alert("Lowercase Letters will be used :)");
     useLowercase = "abcdefghijklmnopqrstuvwxyz";
-  } else {
-    //window.alert("Lowercase Letters will NOT be used :(")
   }
 
   const uppercase = window.confirm("Would you like your password to contain Uppercase Letters?");
   if (uppercase) {
-    //window.alert("Uppercase Letters will be used :)");
     useUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  } else {
-    //window.alert("Uppercase Letters will NOT be used :(")
   }
 
   const numbers = window.confirm("Would you like your password to contain Numbers?");
   if (numbers) {
-    //window.alert("Numbers will be used :)");
     useNumbers = "0123456789";
-  } else {
-    //window.alert("Numbers will NOT be used :(")
   }
 
   const special = window.confirm("Would you like your password to contain Special Characters?");
   if (special) {
-    //window.alert("Special Characters will be used :)");
     useSpecial = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-  } else {
-    //window.alert("Special Characters will NOT be used :(")
   }
 
   // WHEN all prompts are answered
@@ -97,7 +71,5 @@ function generatePassword() {
   // THEN the password is either displayed in an alert or written to the page
 
   let yourPassword = makePassword(passwordLength);
-  //window.alert("Your secure password is " + yourPassword)
-
   return yourPassword;
 }
