@@ -28,10 +28,11 @@ function generatePassword() {
   // WHEN prompted for the length of the password
   // THEN I choose a length of at least 8 characters and no more than 128 characters
 
-  let passwordLength = window.prompt("How long would you like you password to be? Choose between 8 and 128 Characters");
+  let passwordLength = window.prompt("How long would you like you password to be? Choose a number between 8 and 128 Characters");
+  passwordLength = parseInt(passwordLength);
 
-  // fix as character length can be <8 or >128
-  while (passwordLength < 8 || passwordLength > 128) {
+  // fix as character length can be <8 or >128 or NaN
+  while (passwordLength < 8 || passwordLength > 128 || passwordLength != Number) {
     window.alert("That is not an accepted value, please try again");
     passwordLength = window.prompt("How long would you like you password to be? Choose between 8 and 128 Characters");
   }
