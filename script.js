@@ -3,12 +3,12 @@
 // THEN I am presented with a series of prompts for password criteria
 
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+let generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  let password = generatePassword();
+  let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
@@ -40,22 +40,22 @@ function generatePassword() {
   // THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
   // WHEN I answer each prompt
   // THEN my input should be validated and at least one character type should be selected
-  const lowercase = window.confirm("Would you like your password to contain Lowercase Letters?");
+  let lowercase = window.confirm("Would you like your password to contain Lowercase Letters?");
   if (lowercase) {
     useLowercase = "abcdefghijklmnopqrstuvwxyz";
   }
 
-  const uppercase = window.confirm("Would you like your password to contain Uppercase Letters?");
+  let uppercase = window.confirm("Would you like your password to contain Uppercase Letters?");
   if (uppercase) {
     useUppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   }
 
-  const numbers = window.confirm("Would you like your password to contain Numbers?");
+  let numbers = window.confirm("Would you like your password to contain Numbers?");
   if (numbers) {
     useNumbers = "0123456789";
   }
 
-  const special = window.confirm("Would you like your password to contain Special Characters?");
+  let special = window.confirm("Would you like your password to contain Special Characters?");
   if (special) {
     useSpecial = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
   }
@@ -64,10 +64,10 @@ function generatePassword() {
   // THEN a password is generated that matches the selected criteria
 
   function makePassword(length) {
-    var chars = useLowercase + useUppercase + useNumbers + useSpecial;
-    var charLength = chars.length;
-    var result = '';
-    for (var i = 0; i < length; i++) {
+    let chars = useLowercase + useUppercase + useNumbers + useSpecial;
+    let charLength = chars.length;
+    let result = '';
+    for (let i = 0; i < length; i++) {
       result += chars.charAt(Math.floor(Math.random() * charLength));
     }
     return result;
@@ -77,5 +77,10 @@ function generatePassword() {
   // THEN the password is either displayed in an alert or written to the page
 
   let yourPassword = makePassword(passwordLength);
-  return yourPassword;
+  if (yourPassword === "") {
+    window.alert("You must select 'OK' for at least 1 criteria");
+    return generatePassword();
+  } else {
+    return yourPassword;
+  }
 }
